@@ -1,5 +1,29 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "antd/dist/antd.css";
+@import "antd/dist/antd.dark.css";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  color-scheme: dark;
+  background-color: rgba(36, 36, 36, 0.7);
+}
+
+#root {
+  width: 100wh;
+  height: 100vh;
+  line-height: 1;
+  letter-spacing: 4px;
+}
+
+.linear-1 {
+  background-image: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  line-height: 1.4;
+  display: inline-block;
+}
