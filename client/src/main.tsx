@@ -1,12 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
+import { ConfigProvider } from "antd";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 
-import "./index.less"
+import "./index.less";
 
-
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <ConfigProvider componentSize="large">
+      <App />
+    </ConfigProvider>
   </React.StrictMode>
-)
+);
