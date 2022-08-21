@@ -3,7 +3,7 @@
   "scripts": {
     "start": "hardhat node",
     "compile": "hardhat compile",
-    "upload": "hardhat compile && hardhat run --network Ganache scripts/deploy.ts",
+    "upload": "hardhat compile && hardhat run scripts/deploy.ts",
     "console": "hardhat console",
     "clean": "hardhat clean"
   },
