@@ -1,6 +1,13 @@
 import ProjectItem from "@/components/ProjectItem";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const navigator = useNavigate();
+
+  function handleSwitch(path: string) {
+    navigator(path);
+  }
+
   return (
     <div className="h-full flex flex-col justify-center select-none">
       <div>
@@ -9,8 +16,8 @@ function App() {
       </div>
 
       <div className="grid grid-cols-4 justify-center gap-[4rem]">
-        <ProjectItem name="投票应用" emoji="🗒️"></ProjectItem>
-        <ProjectItem name="待办应用" emoji="📝"></ProjectItem>
+        <ProjectItem name="待办应用" emoji="🗒️" onClick={() => handleSwitch("/todoList")}></ProjectItem>
+        <ProjectItem name="投票应用" emoji="📝"></ProjectItem>
         <ProjectItem name="NFT应用" emoji="💵"></ProjectItem>
         <ProjectItem name="土地应用" emoji="🌱"></ProjectItem>
       </div>
