@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "../Card";
 
 interface IProps extends IComProps {
   title?: string;
@@ -7,13 +8,9 @@ interface IProps extends IComProps {
 
 function Menu(props: IProps) {
   return (
-    <div
-      className={`w-[6rem] h-[6rem] rounded-[8px] flex justify-center items-center bg-soft hover:bg-mute cursor-pointer ${props.className}`}
-      title={props.title}
-      onClick={props.onClick}
-    >
+    <Card className={`w-[6rem] h-[6rem] rounded-[8px] flex justify-center items-center ${props.className}`} hover onClick={props.onClick}>
       {props.children}
-    </div>
+    </Card>
   );
 }
 
