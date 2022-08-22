@@ -1,14 +1,16 @@
 import { ConfigProvider } from "antd";
-import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 
 import "./index.less";
+import AppRouters from "./routes";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   // <React.StrictMode>
+  <BrowserRouter>
     <ConfigProvider componentSize="large">
-      <App />
+      <AppRouters />
     </ConfigProvider>
+  </BrowserRouter>
   // </React.StrictMode>
 );
