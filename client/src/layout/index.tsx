@@ -1,4 +1,4 @@
-import AsideMenus from "@/components/AsideMenus";
+import NavBar from "@/components/NavBar";
 
 interface IProps {
   children: React.ReactNode;
@@ -6,10 +6,10 @@ interface IProps {
 
 function Layout(props: IProps) {
   return (
-    <div className="w-full h-full px-[30rem]">
-      {props.children}
+    <div className="w-screen h-screen">
+      <div className="px-[30rem] pt-[8rem] h-full"> {props.children}</div>
 
-      <AsideMenus />
+      <NavBar />
     </div>
   );
 }
