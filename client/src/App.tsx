@@ -6,9 +6,7 @@ function App() {
     <div className="w-full h-full flex flex-col justify-center px-[30rem] select-none">
       <div>
         <h1 className="text-[10rem] mb-[4rem] linear-1">Web3.0 DAPP Demo</h1>
-        <h2 className="text-[4rem] mb-[10rem] text-dark-2">
-          ⚒️ React + Tailwind + Vite & Solidity + Hardhat
-        </h2>
+        <h2 className="text-[4rem] mb-[10rem] text-dark-2">⚒️ React + Tailwind + Vite & Solidity + Hardhat</h2>
       </div>
 
       <div className="grid grid-cols-4 justify-center gap-[4rem]">
