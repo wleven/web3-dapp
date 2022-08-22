@@ -4,17 +4,41 @@ import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 
 enum EthereumMethod {
+  /** 账户改变 */
   AccountsChanged = "accountsChanged",
+  /** 连接账户 */
   EthRequestAccounts = "eth_requestAccounts",
+  /** 导入token */
+  WalletWatchAsset = "wallet_watchAsset",
 }
 
-function getEthereum() {
+/** 获取window.ethereum */
+export function getEthereum() {
   if (!window.ethereum) {
     alert("请安装MetaMask钱包");
     return undefined;
   }
 
   return window.ethereum;
+}
+
+/** 导入代币 */
+export function ImportToken() {
+  getEthereum()
+    ?.request({
+      method: EthereumMethod.WalletWatchAsset,
+      params: {
+        type: "ERC20",
+        options: {
+          address: GetContractAddress("PHB"),
+          symbol: "PHB",
+          decimals: 18,
+          image: "https://docs.metamask.io/metamask-fox.svg",
+        },
+      },
+    })
+    .then(console.log)
+    .catch(console.error);
 }
 
 function useEthers() {
@@ -40,15 +64,16 @@ function useEthers() {
     };
   }, []);
 
+  /** 账户改变相关操作 */
   useEffect(() => {
+    console.log("useEffect userAddress");
     if (!userAddress) {
       setETH("0");
       setPHB("0");
       return;
     }
-
     getETHBalance();
-    getPHBBalance();
+    getTokenBalance();
   }, [userAddress]);
 
   function getProvider() {
@@ -78,7 +103,7 @@ function useEthers() {
   }
 
   /** 获取PHB余额 */
-  function getPHBBalance() {
+  function getTokenBalance() {
     const phbContract = new ethers.Contract(GetContractAddress("PHB"), AbiPHB, provider);
     phbContract.balanceOf(userAddress).then((data: ethers.BigNumber) => {
       setPHB(ethers.utils.formatEther(data));
