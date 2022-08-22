@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 
 interface IProps {
   /** icon 大小 */
@@ -7,6 +7,7 @@ interface IProps {
   color?: string;
   /** font-awesome 图标名称 */
   className?: string;
+  onClick?: React.MouseEventHandler;
 }
 
 function Icon(props: IProps) {
@@ -23,7 +24,7 @@ function Icon(props: IProps) {
     setStyle(css);
   }, [props.size, props.color, props.className]);
 
-  return <i className={`${props.className} inline-block`} style={style}></i>;
+  return <i className={`${props.className} inline-block`} style={style} onClick={props.onClick}></i>;
 }
 
 export default Icon;
