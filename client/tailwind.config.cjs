@@ -12,9 +12,10 @@ module.exports = {
       textColor: {
         "dark-2": "rgba(235,235,235,.6)",
       },
-      colors:{
-        'primary':'#41d1ff'
-      }
+      colors: {
+        primary: "rgb(141,111,254)",
+        "primary-hover": "rgb(153,97,254)",
+      },
     },
   },
   plugins: [],
