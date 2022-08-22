@@ -5,7 +5,7 @@ import { EtherProvider } from "@/context/Ethers";
 
 function AsideMenus() {
   return (
-    <div className="absolute right-[2rem] bottom-[2rem]">
+    <div className="fixed right-[2rem] bottom-[2rem]">
       <EtherProvider>
         <Login />
       </EtherProvider>
