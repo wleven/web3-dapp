@@ -8,6 +8,9 @@ module.exports = {
         soft: "#2f2f2f",
         mute: "#3a3a3a",
       },
+      borderColor: {
+        primary: "rgba(255,255,255,0.1)",
+      },
 
       textColor: {
         "dark-2": "rgba(235,235,235,.6)",
