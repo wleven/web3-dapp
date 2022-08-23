@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 interface IProps extends IComProps {
   hover?: boolean;
   onClick?: React.MouseEventHandler;
@@ -5,10 +7,10 @@ interface IProps extends IComProps {
 
 function Card(props: IProps) {
   return (
-    <div className={`${props.className} ${props.hover ? "cursor-pointer hover:bg-mute" : ""} bg-soft`} onClick={props.onClick}>
+    <div id={props.id} className={`${props.className} ${props.hover ? "cursor-pointer hover:bg-mute" : ""} bg-soft`} onClick={props.onClick}>
       {props.children}
     </div>
   );
 }
 
-export default Card;
+export default memo(Card);
