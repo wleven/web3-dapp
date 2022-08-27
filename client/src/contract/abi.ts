@@ -233,3 +233,89 @@ export const AbiPHB = [
     type: "function",
   },
 ];
+
+export const AbiTodoList = [
+  {
+    inputs: [],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "text",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "time",
+        type: "uint256",
+      },
+    ],
+    name: "AddItem",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "GetList",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "string",
+            name: "value",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "time",
+            type: "uint256",
+          },
+          {
+            internalType: "uint8",
+            name: "state",
+            type: "uint8",
+          },
+        ],
+        internalType: "struct ToDoList.ToDoItem[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "index",
+        type: "uint256",
+      },
+      {
+        internalType: "uint8",
+        name: "state",
+        type: "uint8",
+      },
+    ],
+    name: "UpdateItem",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+];
