@@ -110,7 +110,7 @@ function useEthers() {
     });
   }
 
-  return { getProvider, userAddress, login, balance: { ETH, PHB } };
+  return { getProvider,provider, userAddress, login, balance: { ETH, PHB } };
 }
 
 export default useEthers;
