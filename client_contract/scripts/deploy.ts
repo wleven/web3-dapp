@@ -9,8 +9,19 @@ async function PHB() {
   console.log(phb.address);
 }
 
+async function TodoList() {
+  const Contract = await ethers.getContractFactory("ToDoList");
+  const contract = await Contract.deploy();
+
+  await contract.deployed();
+  console.log("---------- Contract ToDoList ----------");
+  console.log(contract.address);
+}
+
 async function main() {
-  await PHB();
+  // await PHB();
+  await TodoList();
+
   // const currentTimestampInSeconds = Math.round(Date.now() / 1000);
   // const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
   // const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
