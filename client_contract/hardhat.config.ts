@@ -3,10 +3,10 @@ import "@nomicfoundation/hardhat-toolbox";
 
 const config: HardhatUserConfig = {
   solidity: "0.8.16",
-  defaultNetwork: "matic",
+  defaultNetwork: "Ganache",
   networks: {
     Ganache: {
-      url: "HTTP://172.17.192.1:7545",
+      url: " http://172.25.192.1:7545/",
     },
     matic: {
       url: "https://rpc-mumbai.maticvigil.com",
