@@ -1,11 +1,19 @@
 import Card from "@/components/Card";
 import Input from "@/components/Form/Input";
-import { KeyboardEvent, useEffect, useId, useMemo, useState } from "react";
+import { EtherContext } from "@/context/Ethers";
+import { AbiTodoList } from "@/contract/abi";
+import GetContractAddress from "@/contract/address";
+import { ethers } from "ethers";
+import { KeyboardEvent, useContext, useEffect, useMemo, useRef, useState } from "react";
 import ListItem from "./ListItem";
 
 function ToDoList() {
   const [inputValue, setInputValue] = useState("");
   const [list, setList] = useState<ToDoItem[]>([]);
+
+  const todoContract = useRef<ethers.Contract>();
+
+  const context = useContext(EtherContext);
 
   useEffect(() => {
     document.getElementById("todoList")?.addEventListener("change", handleEventClick);
@@ -14,33 +22,49 @@ function ToDoList() {
     };
   }, [list]);
 
+  useEffect(() => {
+    if (!context?.provider) return;
+
+    const todo = new ethers.Contract(GetContractAddress("ToDoList"), AbiTodoList, context.provider.getSigner());
+    todoContract.current = todo;
+
+    getDataList();
+  }, [context?.provider]);
+
+  function getDataList() {
+    todoContract.current?.GetList().then((data: ToDoItem[]) => {
+      setList(data);
+    });
+  }
+
+  /** 改变状态 */
   function handleEventClick(event: HTMLElementEventMap["change"]) {
     const target = event.target as HTMLInputElement;
 
     if (target.getAttribute("type") === "checkbox") {
       const time = target.getAttribute("data-time");
 
-      const item = list.find((i) => i.time === time);
-      if (!item) return;
+      const index = list.findIndex((i) => {
+        return i.time === time;
+      });
+      if (index === -1) return;
 
-      item.state = !target.checked ? 1 : 0;
+      const state = !target.checked ? 1 : 0;
 
-      setList([...list]);
+      todoContract.current?.UpdateItem(index, state).then(() => {
+        getDataList();
+      });
     }
   }
 
   /** 回车 */
   function handleOnKeyDown(event: KeyboardEvent) {
+    if (!context?.provider) return;
     if (event.code === "Enter") {
-      setList([
-        {
-          value: inputValue,
-          state: 0,
-          time: new Date().getTime().toString(),
-        },
-        ...list,
-      ]);
-      setInputValue("");
+      todoContract.current?.AddItem(inputValue, new Date().getTime().toString()).then(() => {
+        getDataList();
+        setInputValue("");
+      });
     }
   }
 
