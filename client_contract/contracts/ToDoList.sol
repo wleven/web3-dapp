@@ -10,6 +10,8 @@ contract ToDoList {
 
     mapping(address => ToDoItem[]) _list;
 
+    event update(address from, address to);
+
     constructor() {}
 
     /** 获取列表 */
@@ -25,7 +27,7 @@ contract ToDoList {
     {
         require(msg.sender != address(0), "epmty address");
         _list[msg.sender].push(ToDoItem({value: text, time: time, state: 0}));
-
+        emit update(msg.sender, address(this));
         return true;
     }
 
@@ -34,7 +36,7 @@ contract ToDoList {
         require(msg.sender != address(0), "epmty address");
 
         _list[msg.sender][index].state = state;
-
+        emit update(msg.sender, address(this));
         return true;
     }
 }
