@@ -23,14 +23,34 @@ function ToDoList() {
   }, [list]);
 
   useEffect(() => {
-    if (!context?.provider) return;
+    if (!context?.userAddress) {
+      if (list.length !== 0) {
+        setList([]);
+        todoContract.current = undefined;
+      }
+      return;
+    }
 
-    const todo = new ethers.Contract(GetContractAddress("ToDoList"), AbiTodoList, context.provider.getSigner());
+    const todo = new ethers.Contract(GetContractAddress("ToDoList"), AbiTodoList, context?.provider?.getSigner());
     todoContract.current = todo;
 
     getDataList();
-  }, [context?.provider]);
 
+    todo.on("update", handleContractUpdate);
+
+    return () => {
+      todo.off("update", handleContractUpdate);
+    };
+  }, [context?.userAddress]);
+
+  /** 合约数据更新事件 */
+  function handleContractUpdate(address: string) {
+    if (address === context?.userAddress) {
+      getDataList();
+    }
+  }
+
+  /** 获取数据列表 */
   function getDataList() {
     todoContract.current?.GetList().then((data: ToDoItem[]) => {
       setList(data);
@@ -39,6 +59,7 @@ function ToDoList() {
 
   /** 改变状态 */
   function handleEventClick(event: HTMLElementEventMap["change"]) {
+    if (!context?.checkLogin()) return;
     const target = event.target as HTMLInputElement;
 
     if (target.getAttribute("type") === "checkbox") {
@@ -58,9 +79,9 @@ function ToDoList() {
   }
 
   /** 回车 */
-  function handleOnKeyDown(event: KeyboardEvent) {
-    if (!context?.provider) return;
+  async function handleOnKeyDown(event: KeyboardEvent) {
     if (event.code === "Enter") {
+      await context?.checkLogin();
       todoContract.current?.AddItem(inputValue, new Date().getTime().toString()).then(() => {
         getDataList();
         setInputValue("");
