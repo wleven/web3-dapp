@@ -2,8 +2,8 @@
   "name": "hardhat-project",
   "scripts": {
     "start": "hardhat node",
-    "compile": "hardhat compile",
-    "upload": "hardhat compile && hardhat run scripts/deploy.ts",
+    "build": "hardhat compile",
+    "build:deploy": "hardhat compile && hardhat run scripts/deploy.ts",
     "console": "hardhat console",
     "clean": "hardhat clean"
   },
