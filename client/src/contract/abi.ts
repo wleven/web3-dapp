@@ -248,9 +248,9 @@ export const AbiTodoList = [
         type: "string",
       },
       {
-        internalType: "uint256",
+        internalType: "string",
         name: "time",
-        type: "uint256",
+        type: "string",
       },
     ],
     name: "AddItem",
@@ -276,9 +276,9 @@ export const AbiTodoList = [
             type: "string",
           },
           {
-            internalType: "uint256",
+            internalType: "string",
             name: "time",
-            type: "uint256",
+            type: "string",
           },
           {
             internalType: "uint8",
