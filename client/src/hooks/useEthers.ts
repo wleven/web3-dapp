@@ -110,7 +110,21 @@ function useEthers() {
     });
   }
 
-  return { getProvider,provider, userAddress, login, balance: { ETH, PHB } };
+  /** 检查登录  */
+  function checkLogin() {
+    if (!provider) {
+      alert("请安装MetaMask钱包");
+      return Promise.reject();
+    }
+
+    if (!userAddress) {
+      return login();
+    }
+
+    return Promise.resolve();
+  }
+
+  return { getProvider, provider, userAddress, login, checkLogin, balance: { ETH, PHB } };
 }
 
 export default useEthers;
