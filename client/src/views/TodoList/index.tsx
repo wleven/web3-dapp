@@ -1,8 +1,7 @@
 import Card from "@/components/Card";
 import Input from "@/components/Form/Input";
 import { EtherContext } from "@/context/Ethers";
-import { AbiTodoList } from "@/contract/abi";
-import GetContractAddress from "@/contract/address";
+import { GetContractAbi, GetContractAddress } from "@/contract";
 import { ethers } from "ethers";
 import { KeyboardEvent, useContext, useEffect, useMemo, useRef, useState } from "react";
 import ListItem from "./ListItem";
@@ -31,7 +30,7 @@ function ToDoList() {
       return;
     }
 
-    const todo = new ethers.Contract(GetContractAddress("ToDoList"), AbiTodoList, context?.provider?.getSigner());
+    const todo = new ethers.Contract(GetContractAddress("ToDoList"), GetContractAbi("ToDoList"), context?.provider?.getSigner());
     todoContract.current = todo;
 
     getDataList();

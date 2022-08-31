@@ -1,5 +1,4 @@
-import { AbiPHB } from "@/contract/abi";
-import GetContractAddress from "@/contract/address";
+import { GetContractAbi, GetContractAddress } from "@/contract";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 
@@ -104,7 +103,7 @@ function useEthers() {
 
   /** 获取PHB余额 */
   function getTokenBalance() {
-    const phbContract = new ethers.Contract(GetContractAddress("PHB"), AbiPHB, provider);
+    const phbContract = new ethers.Contract(GetContractAddress("PHB"), GetContractAbi("PHB"), provider);
     phbContract.balanceOf(userAddress).then((data: ethers.BigNumber) => {
       setPHB(ethers.utils.formatEther(data));
     });
