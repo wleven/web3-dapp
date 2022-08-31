@@ -4,6 +4,7 @@
     "start": "hardhat node",
     "compile": "hardhat compile",
     "build": "hardhat deploy",
+    "test": "hardhat test",
     "console": "hardhat console",
     "clean": "hardhat clean"
   },
