@@ -17,7 +17,8 @@
 
 ```
 cd client_contract
-pnpm build:deploy
+// 部署全部合约
+pnpm build --name all
 ```
 
 ## 启动项目
