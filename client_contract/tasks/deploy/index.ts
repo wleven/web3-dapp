@@ -2,11 +2,11 @@ import { task } from "hardhat/config";
 import { contractCompile, getAddressConfig, setAddressConfig } from "./util";
 
 task("deploy", "custom deploy contract")
-  .addParam("name", "the contract name", "all")
+  .addParam("name", "the contract name", "")
   .addParam("params", "the contract constructor params", "[]")
   .setAction(async (args) => {
     console.log("task-deploy", args);
-
+    if (!args.name) return console.log("name 参数不能为空");
     await contractCompile();
 
     try {
