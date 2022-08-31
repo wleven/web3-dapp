@@ -1,1 +1,1 @@
-import './deploy'
+import './deploy/index'
