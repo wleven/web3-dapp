@@ -2480,8 +2480,8 @@ packages:
     hasBin: true
     dev: true
 
-  /follow-redirects@1.15.1(debug@4.3.4):
-    resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
+  /follow-redirects@1.15.5(debug@4.3.4):
+    resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -4771,7 +4771,7 @@ packages:
     dependencies:
       command-exists: 1.2.9
       commander: 3.0.2
-      follow-redirects: 1.15.1(debug@4.3.4)
+      follow-redirects: 1.15.5(debug@4.3.4)
       fs-extra: 0.30.0
       js-sha3: 0.8.0
       memorystream: 0.3.1
